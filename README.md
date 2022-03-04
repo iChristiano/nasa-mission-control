@@ -2,7 +2,7 @@
 
 > *IN DEVELOPMENT*
 
-The project is a basic showcase of a full-stack JavaScript application, enriched with multiple technologies, frameworks & concepts:
+The project is a showcase of a full-stack JavaScript application, enriched with multiple technologies, frameworks & concepts:
 
 - Node.js
 - Express
@@ -15,4 +15,7 @@ The project is a basic showcase of a full-stack JavaScript application, enriched
 - NPM scripting
 - ...
 
+![](nasa-mission-control_preview.jpg)
+
 *This is not an official site and is not affiliated with NASA or SpaceX in any way.*
+

@@ -1,4 +1,7 @@
 # nasa-mission-control-api
+
+> *IN DEVELOPMENT*
+
 The project is a basic showcase of a full-stack JavaScript application.
 
 The backend part (SERVER) is a Node.js / Express application that is connected to a database.
