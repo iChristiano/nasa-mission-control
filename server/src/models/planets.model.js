@@ -3,9 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse');
 
+const planetsDB = require('./planets.mongo.js')
 
-const allPlanets = [];
-const habitablePlanets = []; 
 // https://www.centauri-dreams.org/2015/01/30/a-review-of-the-best-habitable-planet-candidates/
 
 // Exoplanet Archive Disposition -> exoplanet state of analysis -> "CANDIDATE", "FALSE POSITIVE" OR "CONFIRMED"
@@ -51,25 +50,42 @@ function loadPlanetsData() {
                 comment: '#',
                 columns: true 
             }))
-            .on('data', (data) => {
-                allPlanets.push(data);
+            .on('data', async (data) => {
                 if (isHabitablePlanet(data)) {
-                    habitablePlanets.push(data);
+                    savePlanet(data);
                 }
             })
             .on('error', (err) => {
                 console.log('error:', err);
                 reject(err)
             })
-            .on('end', () => {
-                console.log(`Habitable planet candidates ->`, habitablePlanets.length);
+            .on('end', async () => {
+                const countPlanetsFound = (await getAllPlanets()).length;
+                console.log(`Habitable planet candidates found:`, countPlanetsFound);
                 resolve();
             });
     });
 }
 
-function getAllPlanets() {
-    return habitablePlanets;
+async function getAllPlanets() {
+    return await planetsDB.find({}, {
+        '_id': 0,
+        '__v': 0
+    });
+}
+
+async function savePlanet(planet) {
+    try {
+        await planetsDB.updateOne({
+            keplerName: planet.kepler_name
+        }, {
+            keplerName: planet.kepler_name
+        }, {
+            upsert: true
+        });
+    } catch (error) {
+        console.error('Could not save planet: ', error);
+    }  
 }
 
 module.exports = {

@@ -4,23 +4,31 @@
   "description": "NASA Mission Control API",
   "main": "src/server.js",
   "scripts": {
-    "start": "PORT=5001 node src/server.js",
-    "watch": "PORT=5001 nodemon src/server.js",
-    "test": "jest",
-    "test-watch": "jest --watch"
+    "start": "node src/server.js",
+    "watch": "nodemon src/server.js",
+    "test": "jest --detectOpenHandles",
+    "test-watch": "jest --watch",
+    "cluster": "pm2 start src/server.js -i max"
   },
   "keywords": [],
   "author": "iChristiano",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "cors": "^2.8.5",
     "csv-parse": "^5.0.4",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "morgan": "^1.10.0"
+    "mongoose": "^6.2.5",
+    "morgan": "^1.10.0",
+    "pm2": "^5.2.0"
   }
 }
