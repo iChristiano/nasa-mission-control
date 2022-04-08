@@ -1,6 +1,6 @@
 # docker login
 # docker  build . -t ichristianohub/nasa-mission-control
-# docker push
+# docker push ichristianohub/nasa-mission-control
 
 # docker run -it -p 8000:8000 ichristianohub/nasa-mission-control
 
