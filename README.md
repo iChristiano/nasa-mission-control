@@ -23,6 +23,7 @@ The project is a showcase of a full-stack JavaScript application, enriched with 
 - Docker
 - Dotenv
 - MongoDB
+- MongoDB Atlas
 - Mongoose
 - Clustering
 - ...
